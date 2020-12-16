@@ -19,100 +19,60 @@ public class FreeCrmLoginSteps extends Library {
 	@Given("user on the Login Page")
 	public void user_on_the_Login_Page() {
 	    // Write code here that turns the phrase above into concrete actions
-		 browserSetUp();
+		 
 		 login = new FreeCRMLoginPage(driver);
 		 sUtil = new SeleniumUtilities(driver);
 	}
 
 	@When("User enters valid emailid as {string} and valid password as  {string}")
-	public void user_enters_valid_emailid_as_and_valid_password_as(String username, String password) {
-	    // Write code here that turns the phrase above into concrete actions
-		login.setLoginUserName(username);
+	public void user_enters_valid_emailid_as_and_valid_password_as(String emailid, String password) {
+		
+		login.setLoginUserName(emailid);
 		login.setLoginPassword(password);
 	}
 
-	@Then("user click  login button")
-	public void user_click_login_button() {
+	@When("user click  login button")
+	public void user_click_login_button() throws InterruptedException {
 	    // Write code here that turns the phrase above into concrete actions
-		logger.info("at login button");
-		login.Login();
+		Library.logger.info("at login button");
+		login.Login();		
+		
 	}
 
-	@Then("user see full name in home page")
-	public void user_see_full_name_in_home_page() {
+	@Then("user see full name")
+	public void user_see_full_name() {
 	    // Write code here that turns the phrase above into concrete actions
-		logger.info("at home page");	
-		 homepage = new Homepage(driver);
-		 sUtil.to_take_screenshot("validloginpage.png");
-		 tearDown();
+		Library.logger.info("at home page");	
+		homepage = new Homepage(driver);
+		Library.logger.info("User "+ homepage.getUserName() +" has logged in");
+//		sUtil.to_take_screenshot("validloginpage.png");	 	
+		
 	}
 
-	@Then("user cannot login to application")
-	public void user_cannot_login_to_application() {
+	@Then("user clicks on logout button")
+	public void user_clicks_on_logout_button()  {
 	    // Write code here that turns the phrase above into concrete actions
-		sUtil.to_take_screenshot("invalidlogin.png");
-		tearDown();
+	    homepage.logout();	
+	}	
+
+	@Then("user see the login page")
+	public void user_is_logged_out_of_the_application() {
+	    // Write code here that turns the phrase above into concrete actions
+		login.isLoginButton();
+		Library.logger.info("User has logged out");		
 	}
 
+	@When("User enters emailid as {string} and password as  {string}")
+	public void user_enters_emailid_as_and_password_as(String emailid, String password) {
 
+		login.setLoginUserName(emailid);
+		login.setLoginPassword(password);
+	}
+
+	@Then("Message displayed Wrong emailid or password")
+	public void message_displayed_Wrong_emailid_or_password() {
+
+		Library.logger.info(login.GetErrorMessage().getText());
+	}	
 	
-
-//@Given("user on the Login Page")
-//public void user_on_the_Login_Page() {
-//    // Write code here that turns the phrase above into concrete actions
-//	 browserSetUp();
-//	 login = new FreeCRMLoginPage(driver);
-//	 sUtil = new SeleniumUtilities(driver);
-//}
-//
-//@When("User enters valid emailid as {string} and valid password as  {string}")
-//public void user_enters_valid_emailid_as_and_valid_password_as(String username, String password) {
-//    // Write code here that turns the phrase above into concrete actions
-//	login.setLoginUserName(username);
-//	login.setLoginPassword(password);
-//}
-//
-//
-//@Then("user click  login button")
-//public void user_click_login_button() {
-//    // Write code here that turns the phrase above into concrete actions
-//	logger.info("at login button");
-//	login.Login();
-//}
-//
-//@Then("user see full name in home page")
-//public void user_see_full_name_in_home_page() {
-//    // Write code here that turns the phrase above into concrete actions
-////    throw new io.cucumber.java.PendingException();
-//	
-//	logger.info("at home page");	
-//	 homepage = new Homepage(driver);
-//	 sUtil.to_take_screenshot("validloginpage.png");
-//}
-//
-//@Then("user can logout")
-//public void user_can_logout() {
-//    // Write code here that turns the phrase above into concrete actions
-//	logger.info("at home page logout");
-//    homepage.logout();
-//    sUtil.to_take_screenshot("logout.png");
-//    tearDown();
-//}
-//
-//
-//
-//
-//@Then("user cannot login to application")
-//public void user_cannot_login_to_application() {
-//    // Write code here that turns the phrase above into concrete actions
-////    throw new io.cucumber.java.PendingException();
-//	sUtil.to_take_screenshot("invalidlogin.png");
-//	tearDown();
-//}
-
-
-
-
-
-
 }
