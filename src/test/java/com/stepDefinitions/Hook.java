@@ -8,9 +8,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import com.Login.Homepage;
 import com.baseClasses.DriverBase;
-import com.baseClasses.DriverFactory;
 import com.baseClasses.Library;
 import com.reusableFunctions.SeleniumUtilities;
+
+//import com.baseClasses.Library;
+//import com.reusableFunctions.SeleniumUtilities;
+
 
 import io.cucumber.java.After;
 import io.cucumber.java.AfterStep;
@@ -38,7 +41,7 @@ public class Hook extends Library {
 		if (!scenario.isFailed())
 		{			
 			if ( !driver.getCurrentUrl().equals("https://ui.cogmento.com/"))
-			{
+			{				
 				System.out.println("Signed out from the application");
 				wait.until(ExpectedConditions.presenceOfElementLocated(listbox));
 				driver.findElement(listbox).click();		

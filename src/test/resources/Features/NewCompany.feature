@@ -16,8 +16,19 @@ Scenario: Verification of new company creation
 		|xyz Company|https://www.bakersdelight.com.au/|293 Camberwell Road|Camberwell|Victoria|78956|Australia|1523627896|3698521478|bakeryyum yummylicious|bakery|handlenew|1200|♀┼|500|Medium|On Hold|Event|Partner|123sdwE|Mr.xyj|D:\Pictures\2020-03-02 IPICS\IPICS 005.JPG|
 
 	Then companies are created
-
-
+#
+#Scenario: Verify error message when invalid company website
+#Given user is on company page
+#When user enters invalid website url "http://asdfasdfasdfasdf.com"
+#Then an error popup window is opened
+#
+#
+#Scenario: Verify company cannot be created with empty spaces in company name
+#Given user is on company page
+#When user enters empty spaces in companyname "     "
+#And user clicks on save
+#Then user see the error message
+#
 
 
 #	And User enters company address
