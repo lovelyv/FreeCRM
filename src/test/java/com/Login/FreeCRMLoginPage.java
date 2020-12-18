@@ -41,9 +41,17 @@ public class FreeCRMLoginPage {
 		return 	driver.findElement(loginerror);
 	}
 	
-	public void isLoginButton()
+	public boolean isLoginButton()
 	{
-		wait.until(ExpectedConditions.presenceOfElementLocated(loginbutton));
+		try
+		{
+			wait.until(ExpectedConditions.presenceOfElementLocated(loginbutton));
+			return true;
+		}
+		catch(Exception ex)
+		{
+			return false;
+		}
 	}
 	
 	
