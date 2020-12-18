@@ -2,6 +2,8 @@ package com.stepDefinitions;
 
 import java.util.List;
 
+import org.testng.Assert;
+
 import com.Login.FreeCRMLoginPage;
 import com.Login.Homepage;
 import com.baseClasses.Library;
@@ -44,8 +46,9 @@ public class FreeCrmLoginSteps extends Library {
 	    // Write code here that turns the phrase above into concrete actions
 		Library.logger.info("at home page");	
 		homepage = new Homepage(driver);
-		Library.logger.info("User "+ homepage.getUserName() +" has logged in");
-//		sUtil.to_take_screenshot("validloginpage.png");	 	
+		String username = homepage.getUserName();
+		Library.logger.info("User "+ username +" has logged in");
+		Assert.assertEquals("LOVELY VENU", username.toUpperCase());		
 		
 	}
 
@@ -58,7 +61,8 @@ public class FreeCrmLoginSteps extends Library {
 	@Then("user see the login page")
 	public void user_is_logged_out_of_the_application() {
 	    // Write code here that turns the phrase above into concrete actions
-		login.isLoginButton();
+		boolean isloginbuttonvisible = login.isLoginButton();
+		Assert.assertTrue(isloginbuttonvisible);
 		Library.logger.info("User has logged out");		
 	}
 
@@ -71,8 +75,10 @@ public class FreeCrmLoginSteps extends Library {
 
 	@Then("Message displayed Wrong emailid or password")
 	public void message_displayed_Wrong_emailid_or_password() {
-
-		Library.logger.info(login.GetErrorMessage().getText());
+		String errorMessage = login.GetErrorMessage().getText();
+		System.out.println(errorMessage);
+		boolean contains =  errorMessage.toLowerCase().contains("invalid login");
+		Assert.assertTrue(contains);
 	}	
 	
 }
