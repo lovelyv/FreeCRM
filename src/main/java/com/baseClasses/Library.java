@@ -93,6 +93,7 @@ public static void browserSetUp() {
 		
 
 public static void tearDown() {
+	driver.close();
 driver.quit();
 logger.info("Exiting the application and closing the browser");
 }
