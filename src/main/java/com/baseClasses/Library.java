@@ -58,7 +58,9 @@ public static void browserSetUp() {
 	
 	case "chrome":
 	WebDriverManager.chromedriver().setup();
-	driver=new ChromeDriver();	
+	System.setProperty("webdriver.chrome.driver", "C:\\driver\\chromedriver.exe");
+	driver = new ChromeDriver();
+	logger.info(String.format("Identified the browser as %s. Launching the browser", browser));
 	break;
 	case "firefox":
 	WebDriverManager.firefoxdriver().setup();
